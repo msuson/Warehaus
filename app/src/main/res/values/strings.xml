@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Warehaus</string>
+    <string name="add_product_title">Add Product</string>
+    <string name="edit_product_title">Edit Product</string>
+    <string name="product_name_label">Product Name:</string>
+    <string name="price_label">Price:</string>
+    <string name="quantity_label">Quantity:</string>
+    <string name="supplier_name_label">Supplier Name:</string>
+    <string name="supplier_phone_label">Supplier Phone Number:</string>
+    <string name="order_button_text">order</string>
+    <string name="increase">+</string>
+    <string name="decrease">-</string>
+    <string name="sale_button_text">sale</string>
+</resources>
