@@ -40,14 +40,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="4dp"
-                android:text="@string/price_label"/>
+                android:text="@string/price_label_with_currency"/>
 
             <TextView
                 android:id="@+id/price_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="$9.99"/>
+                tools:text="9.99"/>
 
             <TextView
                 android:layout_width="wrap_content"

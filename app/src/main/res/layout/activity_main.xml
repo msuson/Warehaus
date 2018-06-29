@@ -8,26 +8,21 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/test_buttons">
 
         <Button
             android:id="@+id/insert_button"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="insert data"
-            android:layout_weight="1"/>
-
-        <Button
-            android:id="@+id/display_button"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="display data"
-            android:layout_weight="1"/>
+            android:text="@string/insert_dummy_data"
+            android:focusable="false"/>
 
     </LinearLayout>
 
     <ListView
         android:id="@+id/product_list"
+        android:layout_below="@id/test_buttons"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
@@ -38,6 +33,20 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:src="@drawable/ic_add"
-        android:layout_margin="8dp" />
+        android:layout_margin="16dp" />
+
+    <RelativeLayout
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="16dp"
+            android:text="@string/empty_view_message"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

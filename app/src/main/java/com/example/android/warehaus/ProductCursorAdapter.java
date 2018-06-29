@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.android.warehaus.data.ProductContract.ProductEntry;
 
+import java.util.Locale;
+
 public class ProductCursorAdapter extends CursorAdapter{
 
     public ProductCursorAdapter(Context context, Cursor c) {
@@ -41,8 +43,10 @@ public class ProductCursorAdapter extends CursorAdapter{
         int productQuantity = cursor.getInt(quantityColumnIndex);
 
         nameTextView.setText(productName);
-        priceTextView.setText("$" + Double.toString(productPrice));
-        quantityTextView.setText(Integer.toString(productQuantity));
+        String formattedPrice = String.format(Locale.getDefault(), "%.2f", productPrice);
+        priceTextView.setText(formattedPrice);
+        String quantityString = Integer.toString(productQuantity);
+        quantityTextView.setText(quantityString);
         final int rowId = cursor.getInt(cursor.getColumnIndex(ProductEntry._ID));
         final int quantity = cursor.getInt(cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_QUANTITY));
         saleButton.setOnClickListener(new View.OnClickListener() {

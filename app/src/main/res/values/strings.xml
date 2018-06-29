@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">Warehaus</string>
     <string name="add_product_title">Add Product</string>
+    <string name="add_product_failed">Unable to add product.</string>
+    <string name="add_product_success">New product successfully added.</string>
+    <string name="edit_product_failed">Unable to update product details.</string>
+    <string name="edit_product_success">Product details edited.</string>
+    <string name="delete_product_failed">Unable to delete product.</string>
+    <string name="delete_product_success">Product successfully deleted.</string>
     <string name="edit_product_title">Edit Product</string>
     <string name="product_name_label">Product Name:</string>
     <string name="price_label">Price:</string>
+    <string name="price_label_with_currency">Price: $</string>
     <string name="quantity_label">Quantity:</string>
     <string name="supplier_name_label">Supplier Name:</string>
     <string name="supplier_phone_label">Supplier Phone Number:</string>
@@ -11,4 +18,18 @@
     <string name="increase">+</string>
     <string name="decrease">-</string>
     <string name="sale_button_text">sale</string>
+    <string name="zero_quantity">0</string>
+    <string name="unsaved_changes_dialog_msg">You have made unsaved changes to the product detail.</string>
+    <string name="discard">Discard</string>
+    <string name="keep_editing">Keep Editing</string>
+    <string name="delete_dialog_msg">Are you sure you want to delete all information about this product?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="insert_dummy_data">insert dummy data</string>
+    <string name="dollar_sign">$</string>
+    <string name="provide_product_name">Please provide a product name</string>
+    <string name="provide_product_price">Please provide a product price</string>
+    <string name="provide_supplier_name">Please provide a supplier name</string>
+    <string name="provide_supplier_number">Please provide a valid supplier phone number</string>
+    <string name="empty_view_message">The database is currently empty. Press \"Insert Dummy Data\" button to insert desired amount of placeholder products. Press \"Add\" button to add a new product to the database. Please provide information for all fields.</string>
 </resources>

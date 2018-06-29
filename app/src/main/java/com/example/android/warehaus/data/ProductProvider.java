@@ -73,10 +73,20 @@ public class ProductProvider extends ContentProvider{
 
     private Uri insertProduct(Uri uri, ContentValues values) {
         String productName = values.getAsString(ProductEntry.COLUMN_PRODUCT_NAME);
-        double productPrice = values.getAsDouble(ProductEntry.COLUMN_PRODUCT_PRICE);
-        int productQuantity = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_QUANTITY);
-        String supplierName = values.getAsString(ProductEntry.COLUMN_SUPPLIER_NAME);
+        if(productName == null)
+            throw new IllegalArgumentException("Product requires a name.");
+
+        Double productPrice = values.getAsDouble(ProductEntry.COLUMN_PRODUCT_PRICE);
+        if(productPrice != null && productPrice < 0)
+            throw new IllegalArgumentException("Must enter a valid price.");
+
+        Integer productQuantity = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_QUANTITY);
+        if(productQuantity != null && productQuantity < 0)
+            throw new IllegalArgumentException("Quantity cannot be negative.");
+
         String supplierPhone = values.getAsString(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
+        if(supplierPhone != null && supplierPhone.length() < 10)
+            throw new IllegalArgumentException("Must provide valid a phone number.");
 
         SQLiteDatabase database = dbHelper.getWritableDatabase();
         long id = database.insert(ProductEntry.TABLE_NAME, null, values);
@@ -105,6 +115,30 @@ public class ProductProvider extends ContentProvider{
     }
 
     public int updateProduct(Uri uri, ContentValues values, String selection, String[] selectionArgs) {
+        if(values.containsKey(ProductEntry.COLUMN_PRODUCT_NAME)) {
+            String productName = values.getAsString(ProductEntry.COLUMN_PRODUCT_NAME);
+            if(productName == null)
+                throw new IllegalArgumentException("Product requires a name.");
+        }
+
+        if(values.containsKey(ProductEntry.COLUMN_PRODUCT_PRICE)) {
+            Double productPrice = values.getAsDouble(ProductEntry.COLUMN_PRODUCT_PRICE);
+            if(productPrice != null && productPrice < 0)
+                throw new IllegalArgumentException("Must enter a valid price.");
+        }
+
+        if(values.containsKey(ProductEntry.COLUMN_PRODUCT_QUANTITY)) {
+            Integer productQuantity = values.getAsInteger(ProductEntry.COLUMN_PRODUCT_QUANTITY);
+            if(productQuantity != null && productQuantity < 0)
+                throw new IllegalArgumentException("Quantity cannot be negative.");
+        }
+
+        if(values.containsKey(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER)) {
+            String supplierPhone = values.getAsString(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
+            if(supplierPhone != null && supplierPhone.length() < 10)
+                throw new IllegalArgumentException("Must provide valid a phone number.");
+        }
+
         SQLiteDatabase database = dbHelper.getWritableDatabase();
         int rowsUpdated = database.update(ProductEntry.TABLE_NAME, values, selection, selectionArgs);
         if(rowsUpdated != 0)

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    #292b3a
+    <color name="colorPrimary">#292b3a</color>
+    #1e1f23
+    <color name="colorPrimaryDark">#1e1f23</color>
+    #3e61ef
+    <color name="colorAccent">#3e61ef</color>
+    <color name="saveButton">#3ddb42</color>
+    <color name="deleteButton">#f44141</color>
 </resources>

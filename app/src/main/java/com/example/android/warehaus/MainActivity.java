@@ -24,8 +24,6 @@ import com.example.android.warehaus.data.ProductContract.ProductEntry;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
-    private InventoryDbHelper dbHelper = new InventoryDbHelper(this);
-
     ProductCursorAdapter cursorAdapter;
 
     private static final int PRODUCT_LOADER = 0;
@@ -43,15 +41,10 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         });
 
-        Button displayButton = findViewById(R.id.display_button);
-//        displayButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                displayData();
-//            }
-//        });
-
         ListView productList = findViewById(R.id.product_list);
+
+        View emptyView = findViewById(R.id.empty_view);
+        productList.setEmptyView(emptyView);
 
         cursorAdapter = new ProductCursorAdapter(this, null);
         productList.setAdapter(cursorAdapter);
@@ -81,8 +74,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     private void insertData() {
-        //SQLiteDatabase db = dbHelper.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(ProductEntry.COLUMN_PRODUCT_NAME, "Nikkon D3100");
         values.put(ProductEntry.COLUMN_PRODUCT_PRICE, 399.99);
@@ -91,73 +82,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         values.put(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER, "555-123-4567");
 
         Uri newUri = getContentResolver().insert(ProductEntry.CONTENT_URI, values);
-        //long newRowId = db.insert(ProductEntry.TABLE_NAME, null, values);
-
-//        String text = "Product inserted with id " + newRowId;
-//        int duration = Toast.LENGTH_SHORT;
-//        Toast toast = Toast.makeText(this, text, duration);
-//        toast.show();
     }
-
-    private Cursor queryData() {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-
-        String[] projection = {
-                ProductEntry._ID,
-                ProductEntry.COLUMN_PRODUCT_NAME,
-                ProductEntry.COLUMN_PRODUCT_PRICE,
-                ProductEntry.COLUMN_PRODUCT_QUANTITY,
-                ProductEntry.COLUMN_SUPPLIER_NAME,
-                ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER
-        };
-
-        Cursor cursor = db.query(
-                ProductEntry.TABLE_NAME,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null
-        );
-
-        return cursor;
-    }
-
-//    private void displayData() {
-//        Cursor cursor = queryData();
-//
-//        TextView dataTextView = findViewById(R.id.data_text_display);
-//        dataTextView.setText("");
-//
-//        try {
-//            int idColumnIndex = cursor.getColumnIndex(ProductEntry._ID);
-//            int prodNameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_NAME);
-//            int prodPriceColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_PRICE);
-//            int quantityColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_PRODUCT_QUANTITY);
-//            int supNameColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_SUPPLIER_NAME);
-//            int supPhoneColumnIndex = cursor.getColumnIndex(ProductEntry.COLUMN_SUPPLIER_PHONE_NUMBER);
-//
-//            while(cursor.moveToNext()) {
-//                int currentId = cursor.getInt(idColumnIndex);
-//                String currentProdName = cursor.getString(prodNameColumnIndex);
-//                double currentPrice = cursor.getDouble(prodPriceColumnIndex);
-//                int currentQuantity = cursor.getInt(quantityColumnIndex);
-//                String currentSupplierName = cursor.getString(supNameColumnIndex);
-//                String currentSupplierNumber = cursor.getString(supPhoneColumnIndex);
-//
-//                dataTextView.append(currentId + " - " +
-//                    currentProdName + " - " +
-//                    currentPrice + " - " +
-//                    currentQuantity + " - " +
-//                    currentSupplierName + " - " +
-//                    currentSupplierNumber + "\n");
-//            }
-//
-//        } finally {
-//            cursor.close();
-//        }
-//    }
 
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
